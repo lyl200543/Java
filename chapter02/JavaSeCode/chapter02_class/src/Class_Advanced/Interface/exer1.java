@@ -13,4 +13,39 @@ package Class_Advanced.Interface;
  * @Version 1.0
  */
 public class exer1 {
+    public static void main (String[] args) {
+        Eatable[] e =new Eatable[3];
+        e[0]=new Chinese();
+        e[1]=new American();
+        e[2]=new Indian();
+        for(int i=0;i<e.length;i++){
+            e[i].eat();
+        }
+    }
 }
+
+interface Eatable{
+    public abstract void eat();
+}
+
+class Chinese implements Eatable{
+    @Override
+    public void eat () {
+        System.out.println("用筷子吃饭");
+    }
+}
+
+class American implements Eatable{
+    @Override
+    public void eat () {
+        System.out.println("用刀叉吃饭");
+    }
+}
+
+class Indian implements Eatable{
+    @Override
+    public void eat () {
+        System.out.println("用手抓饭");
+    }
+}
+
