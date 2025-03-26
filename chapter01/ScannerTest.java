@@ -1,0 +1,38 @@
+//使用scanner获取不同类型数据的过程
+//1.导包：import java.util.Scanner
+//2.创建一个Scanner类的实例
+//3.调用Scanner类中的方法，获取指定类型的变量
+//4.关闭资源，调用Scanner类的close()
+
+
+//1.导包：import java.util.Scanner
+import java.util.Scanner;
+class ScannerTest 
+{
+	public static void main(String[] args)
+	{
+		//2.创建一个Scanner类的实例
+		Scanner scan=new Scanner(System.in);
+
+		//3.调用Scanner类中的方法，获取指定类型的变量
+		System.out.println("欢迎来到赛博新世界！");
+
+		System.out.print("请输入你的姓名：");
+		String name=scan.next();
+
+		System.out.print("请输入你的年龄：");
+		int age=scan.nextInt();
+		
+		System.out.print("请输入你的性别(男/女)：");
+		char sex=scan.next().charAt();
+	
+		System.out.println("玩家姓名：" + name);
+		System.out.println("玩家年龄：" + age);
+		System.out.println("玩家性别：" + sex);
+
+		System.out.println("恭喜你，完成注册！");
+
+		//4.关闭资源，调用Scanner类的close()
+		scan.close();
+	}
+}
