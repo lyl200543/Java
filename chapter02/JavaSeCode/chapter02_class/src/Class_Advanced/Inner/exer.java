@@ -10,20 +10,31 @@ package Class_Advanced.Inner;
  * @Author lyl
  * @Version 1.0
  */
-public class exer {
+//public class exer {
+//    public static void main (String[] args) {
+//        new tool(){
+//            @Override
+//            public void test () {
+//                System.out.println("尚硅谷");
+//            }
+//        }.test();
+//    }
+//}
+//
+//interface tool{
+//    public abstract void test();
+//}
+
+public class exer{
     public static void main (String[] args) {
-        new tool(){
-            @Override
-            public void test () {
-                System.out.println("尚硅谷");
-            }
-        };
+       new Object(){
+           public void test(){
+               System.out.println("尚硅谷");
+           }
+       }.test();
     }
 }
 
-interface tool{
-    public abstract void test();
-}
 
 
 
