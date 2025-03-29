@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="JunitTest">
+    <CLASSES>
+      <root url="file://D:/IDEA/JunitTest" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://D:/IDEA/JunitTest" recursive="false" />
+  </library>
+</component>
