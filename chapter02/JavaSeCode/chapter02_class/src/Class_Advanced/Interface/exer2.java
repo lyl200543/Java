@@ -13,22 +13,28 @@ package Class_Advanced.Interface;
  * 在Comparablecircle类中给出接口中方法compareTo的实现体，用来比较两个圆的半径大小。
  * 定义一个测试类InterfaceTest，创建两个ComparableCircle对象，调用compareTo方法比较两个类的半径大小。
  * 拓展:参照上述做法定义矩形类Rectangle和ComparableRectangle类，在ComparableRectangle类中给出compareTo方法的实现，比较两个矩形的面积大小。
+ *
  * @Author lyl
  * @Version 1.0
  */
 public class exer2 {
     public static void main (String[] args) {
-        ComparableCircle c1=new ComparableCircle(10);
-        ComparableCircle c2=new ComparableCircle(15);
-        int ret=c1.compareTo(c2);
-        System.out.println(ret);
+        try {
+            ComparableCircle c1 = new ComparableCircle(10);
+            ComparableCircle c2 = new ComparableCircle(15);
+            int ret = c1.compareTo(c2);
+            System.out.println(ret);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 
-interface CompareObject{
-    public int compareTo(Object o);
+interface CompareObject {
+    public int compareTo (Object o) throws Exception;
 }
-class Circle{
+
+class Circle {
     private double radius;
 
     public Circle (double radius) {
@@ -49,20 +55,19 @@ class Circle{
 
 class ComparableCircle extends Circle implements CompareObject {
     @Override
-    public int compareTo (Object o) {
-        if(this==o)
+    public int compareTo (Object o) throws Exception {
+        if (this == o)
             return 0;
-        if(o instanceof ComparableCircle){
+        if (o instanceof ComparableCircle) {
             Circle circle = (Circle) o;
-            if(getRadius()>circle.getRadius())
+            if (getRadius() > circle.getRadius())
                 return 1;
-            else if(getRadius()<circle.getRadius())
-                return -1;
+            else if (getRadius() < circle.getRadius())
+                return - 1;
             else
                 return 0;
-        }
-        else
-            return 2; //后面知识抛出异常
+        } else
+            throw new Exception("类型不同，无法比较");
     }
 
     public ComparableCircle (double radius) {
