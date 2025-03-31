@@ -1,4 +1,6 @@
 # 异常
+
+---
 ## 1.异常的体系结构：
 ### java.lang.Throwable:异常体系的根父类
 - Throwable中的常用方法:
