@@ -55,9 +55,9 @@ package ThreadSafe;
 
 public class TicketTest {
     public static void main (String[] args) {
-        Window w1 = new Window();
-        Window w2 = new Window();
-        Window w3 = new Window();
+        Window1 w1 = new Window1();
+        Window1 w2 = new Window1();
+        Window1 w3 = new Window1();
 
         w1.setName("窗口1");
         w2.setName("窗口2");
@@ -76,7 +76,7 @@ class Window extends Thread {
     @Override
     public void run () {
         while (true) {
-            synchronized (Window.class) {  //同步检测器知识涉及反射
+            synchronized (Window1.class) {  //同步检测器知识涉及反射
                 if (ticket > 0) {
                     System.out.println(Thread.currentThread().getName() + "成功售票，票号为" + ticket);
                     ticket--;
