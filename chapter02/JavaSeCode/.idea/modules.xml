@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/chapter02_class/chapter02_class.iml" filepath="$PROJECT_DIR$/chapter02_class/chapter02_class.iml" />
       <module fileurl="file://$PROJECT_DIR$/chapter03_exception/chapter03_exception.iml" filepath="$PROJECT_DIR$/chapter03_exception/chapter03_exception.iml" />
       <module fileurl="file://$PROJECT_DIR$/chapter04_Thread/chapter04_Thread.iml" filepath="$PROJECT_DIR$/chapter04_Thread/chapter04_Thread.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chapter05_api/chapter05_api.iml" filepath="$PROJECT_DIR$/chapter05_api/chapter05_api.iml" />
     </modules>
   </component>
 </project>
