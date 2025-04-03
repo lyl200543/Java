@@ -1,4 +1,4 @@
-package exer;
+package Stringexer;
 
 /**
  * ClassName: exer2

@@ -58,7 +58,7 @@ String s2 = new string("hello");  //在内存中创建了几个对象?
 ---
 ## 7.常用方法：
 - (1)boolean isEmpty():字符串是否为空
-- (2)int length():返回字符串的长度
+- ***(2)int length():返回字符串的长度***
 - (3)String concat(xx):拼接
 - (4)boolean equals(0bject obj):比较字符串是否相等，区分大小写
 - (5)boolean equalsIgnoreCase(0bject obj):比较字符串是否相等，不区分大小写
@@ -69,7 +69,7 @@ String s2 = new string("hello");  //在内存中创建了几个对象?
 - (10)String trim():去掉字符串前后空白符
 - (11)public String intern():结果在常量池中共享
 - (12)boolean contains(xx):是否包含xx
-- (13)int indexof(xx):从前往后找当前字符串中xx，即如果有返回第一次出现的下标，要是没有返回-1
+- ***(13)int indexof(xx):从前往后找当前字符串中xx，即如果有返回第一次出现的下标，要是没有返回-1***
 - (14)int indexOf(string str,int fromlndex):返回指定子字符串在此字符串中第一次出现处的索引，从指定的索引开始
 - (15)int lastindexof(xx):从后往前找当前字符串中xx，即如果有返回最后一次出现的下标，要是没有返回-1
 - (16)int lastlndexof(string str,int fromlndex):返回指定子字符串在此字符串中最后一次出现处的索引，从指定的索引开始反向搜索
@@ -80,7 +80,7 @@ String s2 = new string("hello");  //在内存中创建了几个对象?
 - (21)static String valueOf(charll data, int offset, int count): 返回指定数组中表示该字符序列的 String
 - (22)static string copyalueOf(charl] data): 返回指定数组中表示该字符序列的 String
 - (23)static String copyValueOf(charll data, int offset,int count):返回指定数组中表示该字符序列的 string
-- (24)char charAt(index):返回[index]位置的字符
+- ***(24)char charAt(index):返回[index]位置的字符***
 - (25)boolean startswith(xx):测试此字符串是否以指定的前缀开始
 - (26)boolean startswith(string prefix,int toffset):测试此字符串从指定索引开始的子字符串是否以指定前缀开始
 - (27)boolean endswith(xx):测试此字符串是否以指定的后缀结束
@@ -89,4 +89,45 @@ String s2 = new string("hello");  //在内存中创建了几个对象?
 - (30)stringreplaceAl(String regex,String replacement):使用给定的 replacement 替换此字符串所有匹配给定的正则表达式的子字符串
 - (31)String replaceFirst(String regex, String replacement):使用给定的 replacement 替换此字符串匹配给定的正则表达式的第一个子字符串
 ---
-## 8.
+## 8.StringBuffer,StringBuilder:
+### 8.1 三个类的对比:String、StringBuffer、StringBuilder
+- String:不可变的字符序列;底层使用char[](jdk8及之前)，底层使用byte[](jdk9及之后)
+- StringBuffer:可变的字符序列;JDK1.0声明，线程安全的，效率低;底层使用char[] (idk8及之前)，底层使用byte[](jdk9及之后)
+- StringBuilder:可变的字符序列;JDK5.0声明，线程不安全的,效率高;底层使用char[] (idk8及之前)，底层使用byte[](jdk9及之后)
+### 8.2 StringBuffer/StringBuilder的可变性分析(源码分析):
+```java
+String s1 = new String();  //char[] value = new char[0];
+String s2 = new String("abc");  // char[] value = new char[]{'a','b','c'};
+```
+- 针对于StrinqBuilder来说:
+- 内部的属性有:
+- char[] value;  //存储字符序列
+- int count;  //实际存储的字符的个数
+```java
+StringBuilder sBuffer1 = new StringBuilder();
+//char[] value = new char[16];
+StringBuilder sBuffer2 = new stringBuilder("abc"); 
+//char[] value = new char[16 + "abc".length];
+sBuffer1.append("ac");  //value[0]='a'; value[1]='c';
+sBuffer1.append("b");   //value[2]='b';
+```
+- 字符串的初始容量为16
+- 不断的添加，一旦count要超过value.length时，就需要扩容:***默认扩容为原有容量的2倍+2***
+- 并将原有valve数组中的元素复制到新的数组中
+- 如果默认扩容容量小于增加的字符个数时，则扩容至要增加的字符个数
+### 8.3 String类的选择：
+- ①如果开发中需要频繁的针对于字符串进行增、删、改等操作，建议使用StringBuffer或stringBuilder替换String，因为使用Strinq效率低
+- ②如果开发中，不涉及到线程安全问题，建议使用StringBuilder替换StringBuffer。因为使用StringBuilder效率高
+- ③如果开发中大体确定要操作的字符的个数，建议使用带int capacitv参数的构造器，因为可以避免底层多次扩容操作，性能降低
+### 8.4 常用方法：
+- (1)StringBuffer append(xx):提供了很多的append()方法，用于进行字符串追加的方式拼接
+- (2)StringBuffer delete(int start, int end): 删除[start,end)之间字符
+- (3)StringBuffer deletecharAt(int index):删除[index]位置字符
+- (4)StringBuffer replace(int start, int end, String str):替换[start,end)范围的字符序列为str
+- (5)void setcharAt(int index, char c):替换[index]位置字符
+- (6)char charAt(int index):查找指定index位置上的字符
+- (7)***StringBuffer insert(int index,xx):在[index]位置插入xx***
+- (8)int length():返回存储的字符数据的长度
+- (9)***StringBuffer reverse():反转***
+- (10)***void setLength(int newLength):设置当前字符序列长度为newLength***
+#### 大多方法返回this，可以进行链式调用
