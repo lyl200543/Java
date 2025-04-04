@@ -15,6 +15,8 @@ import java.util.Date;
  * @Author lyl
  * @Version 1.0
  */
+
+//JDK8之前
 public class DateTest1 {
     @Test
     public void test1 () {

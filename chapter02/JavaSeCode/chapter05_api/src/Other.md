@@ -1,0 +1,21 @@
+# 其他类和API
+
+---
+## 1.System类
+- 属性:out、in、err
+- 方法:currentTimeMillis()/gc()/ exit(int status)/ getProperty(String property)
+---
+## 2.Runtime类
+- 对应着Java进程的内存使用的运行时环境，是单例的
+---
+## 3.Math类
+- 凡是与数学运算相关的操作，大家可以在此类中找相关的方法即可
+---
+## 4.BigInteger类和BiqDecimal类
+### 4.1 BigInteger:
+- 可以表示任意长度的整数
+### 4.2 BiqDecimal:
+- 可以表示任意精度的浮点数
+---
+## Random类
+- 获取指定范围的随机整数:nextInt(int bound) --> [0,bound)

@@ -44,6 +44,7 @@ String s2 = new string("hello");  //在内存中创建了几个对象?
 ## 5.String的连接操作:+
 - 情况1:`常量 + 常量`:结果仍然存储在字符串常量池中，返回此字面量的地址(注:此时的常量可能是字面量，也可能是final修饰的变量)
 - 情况2:`常量 +变量 或 变量 + 变量`:都会通过new的方式创建一个新的字符串，返回堆空间中此字符串对象的地址
+- ***（创建一个StringBuilder的实例，通过append()添加字符串，最后调用toString()返回一个字符串(toString()内部new了一个String的实例)）***
 - 情况3:字符串变量调用字符串的intern():返回的是字符串常量池中字面量的地址
 - (了解)情况4:concat(xxx):作用是追加字符串
 - 不管是常量调用此方法，还是变量调用，同样不管参数是常量还是变量,总之，调用完concat()方法都返回一个新new的对象
@@ -77,16 +78,16 @@ String s2 = new string("hello");  //在内存中创建了几个对象?
 - (18)String substring(int beginIndex,int endindex):返回一个新字符串，它是此字符串从beginlndex开始截取到endIndex(不包含)的一个子字符串
 - (19)char[] tocharArray():将此字符串转换为一个新的字符数组返回
 - (20)static String value0f(char data):返回指定数组中表示该字符序列的 String
-- (21)static String valueOf(charll data, int offset, int count): 返回指定数组中表示该字符序列的 String
-- (22)static string copyalueOf(charl] data): 返回指定数组中表示该字符序列的 String
-- (23)static String copyValueOf(charll data, int offset,int count):返回指定数组中表示该字符序列的 string
+- (21)static String valueOf(char[] data, int offset, int count): 返回指定数组中表示该字符序列的 String
+- (22)static string copyalueOf(char[] data): 返回指定数组中表示该字符序列的 String
+- (23)static String copyValueOf(char[] data, int offset,int count):返回指定数组中表示该字符序列的 string
 - ***(24)char charAt(index):返回[index]位置的字符***
 - (25)boolean startswith(xx):测试此字符串是否以指定的前缀开始
 - (26)boolean startswith(string prefix,int toffset):测试此字符串从指定索引开始的子字符串是否以指定前缀开始
 - (27)boolean endswith(xx):测试此字符串是否以指定的后缀结束
 - (28)String replace(char oldchar, charnewchar):返回一个新的字符串，它是通过用 newchar 替换此字符串中出现的所有 oldchar 得到的，不支持正则
 - (29)String replace(charSequence target, charSequence replacement):使用指定的字面值替换序列，替换此字符串所有匹配字面值目标序列的子字符串
-- (30)stringreplaceAl(String regex,String replacement):使用给定的 replacement 替换此字符串所有匹配给定的正则表达式的子字符串
+- (30)string replaceAll(String regex,String replacement):使用给定的 replacement 替换此字符串所有匹配给定的正则表达式的子字符串
 - (31)String replaceFirst(String regex, String replacement):使用给定的 replacement 替换此字符串匹配给定的正则表达式的第一个子字符串
 ---
 ## 8.StringBuffer,StringBuilder:

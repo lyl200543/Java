@@ -1,7 +1,9 @@
 package Dateexer;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
-
 
 /**
  * ClassName: exer1
@@ -21,6 +23,13 @@ public class exer1 {
 //    Date d1 = new Date();
 //    java.sql.Date d2 = new java.sql.Date(d1.getTime());
 
-    Scanner scan = new Scanner(System.in);
-    
+    public static void main (String[] args) throws ParseException {
+        Scanner scanner = new Scanner(System.in);
+        String string = scanner.next();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = sdf.parse(string);
+        java.sql.Date date1 = new java.sql.Date(date.getTime());
+        System.out.println(date1);
+        scanner.close();
+    }
 }
