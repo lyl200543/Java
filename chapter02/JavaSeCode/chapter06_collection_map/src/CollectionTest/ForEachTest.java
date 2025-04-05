@@ -31,7 +31,15 @@ public class ForEachTest {
     public void test2 () {
         String[] arr = new String[]{"aa" , "bb" , "cc"};
 
+        //数组中的元素被修改
+//        for (int i = 0 ; i < arr.length ; i++) {
+//            arr[i]="mm";
+//        }
 
+        //只是str变了，数组中的元素没有被修改
+        for(String str:arr){
+            str="mm";
+        }
 
 
         for (String str : arr) {
