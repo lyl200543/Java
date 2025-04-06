@@ -202,4 +202,38 @@ size()
 ### 6.5 Hashtable与Properties的使用
 - Properties:是Hashtable的子类，其key和valve都是String类型的，常用来处理属性文件
 ---
-## 7.
+## 7.Collection工具类的使用：
+### 7.1 Collections概述
+#### Collections 是一个操作 Set、List 和 Map 等集合的工具类
+### 7.2 常用方法
+#### 排序操作:
+- reverse(List):反转 List 中元素的顺序
+- shuffle(List):对 List 集合元素进行随机排序
+- sort(List):根据元素的自然顺序对指定 List 集合元素按升序排序
+- sort(List，Comparator):根据指定的 Comparator 产生的顺序对 List 集合元素进行排序
+- swap(List，int， int):将指定 list 集合中的 i 处元素和 j 处元素进行交换
+#### 查找
+- 0bject max(Collection):根据元素的自然顺序，返回给定集合中的最大元素（其实是取集合最右边的元素）
+- 0bject max(Collection，Comparator):根据 Comparator 指定的顺序，返回给定集合中的最大元素
+- object min(Collection):根据元素的自然顺序，返回给定集合中的最小元素
+- 0bject min(Collection，Comparator):根据 Comparator 指定的顺序，返回给定集合中的最小元素
+- int binarySearch(list list,T key):在List集合中查找某个元素的下标，但是List的元素必须是T或T的子类对象，而且必须是可比较大小的，即支持自然排序的。而且集合也事先必须是有序的，否则结果不确定。
+- int binarySearch(List list,T key,comparator c)在List集合中查找某个元素的下标，但是List的元素必须是T或T的子类对象，而且集合也事先必须是按照c比较器规则进行排序过的，否则结果不确定。
+- int frequency(collectionc，Objecto):返回指定集合中指定元素的出现次数
+#### 复制、替换
+- ***void copy(List dest,List src):将src中的内容复制到dest中***
+- boolean replaceAll(List list, Object oldVal， Object newVal):使用新值替换 List 对象的所有旧值
+- 提供了多个unmodifiablexxx()方法，该方法返回指定 xxx的不可修改的视图。
+#### 添加
+- boolean addAll(Collection c... elements)将所有指定元素添加到指定 collection 中
+#### 同步
+- ***该方法可使将指定集合包装成线程同步的集合，从而可Collections 类中提供了多个synchronizedXxx()方法以解决多线程并发访问集合时的线程安全问题***
+---
+## 8.补充：
+### 8.1 遍历集合的方式有哪些?
+- 迭代器lterator：用来遍历Collection，不能用来遍历Map
+- 增强for
+- 一般的for:可以用来遍历List
+### 8.2 HashMap里面实际装的是什么?
+- JDK7:HashMap内部声明了Entry，实现了Map中的Entry接口。(key，value作为Entry的两个属性出现)
+- JDK8:HashMap内部声明了Node，实现了Map中的Entry接口。(key，value作为Node的两个属性出现)
