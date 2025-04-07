@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/chapter05_api/chapter05_api.iml" filepath="$PROJECT_DIR$/chapter05_api/chapter05_api.iml" />
       <module fileurl="file://$PROJECT_DIR$/chapter06_collection_map/chapter06_collection_map.iml" filepath="$PROJECT_DIR$/chapter06_collection_map/chapter06_collection_map.iml" />
       <module fileurl="file://$PROJECT_DIR$/chapter07_generic/chapter07_generic.iml" filepath="$PROJECT_DIR$/chapter07_generic/chapter07_generic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chapter08_dataStructure/chapter08_dataStructure.iml" filepath="$PROJECT_DIR$/chapter08_dataStructure/chapter08_dataStructure.iml" />
     </modules>
   </component>
 </project>
