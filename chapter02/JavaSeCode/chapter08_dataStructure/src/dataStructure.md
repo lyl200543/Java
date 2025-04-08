@@ -268,9 +268,11 @@ void createEntry (int hash , K key , V value , int bucketIndex) {
     size++;
 }
  ```
+
 ##### 3>Entry的定义如下
+
 ```java
-static class Entry<K,V> implements Map.Entry<K,V> {
+static class Entry<K, V> implements Map.Entry<K, V> {
     final K key;
     V value;
     Entry<K, V> next;
@@ -286,4 +288,65 @@ static class Entry<K,V> implements Map.Entry<K,V> {
         hash = h;
     }
 }
+ ```
+
+#### 2.1.2 jdk8与jdk7的不同之处(以jdk1.8.0_271为例):
+
+- ①在jdk8中，当我们创建了HashMap实例以后，底层并没有初始化table数组
+- 当首次添加(key,valve)时，进行判断,如果发现table尚未初始化，则对数组进行初始化（容量为16）
+- ②在jdk8中，HashMap底层定义了Node内部类，替换jdk7中的Entry内部类。意味着，我们创建的数组是Node[]
+- ③在jdk8中，如果当前的(key,value)经过一系列判断之后，可以添加到当前的数组角标i中。如果此时角标i位置上有元素
+- 在jdk7中是将新的(key,value)指向已有的旧的元素(头插法)，而在jdk8中是旧的元素指向新的(key,value)元素(尾插法)
+- ④jdk7:数组+单向链表
+- jk8:数组+单向链表 + 红黑树
+- 什么时候单向链表会变为红黑树:
+    - 如果数组索引i位置上的元素的个数达到8，并且数组的长度达到64时，我们就将此索引i位置上的多个元素改为使用红黑树的结构进行存储
+    - 为什么修改呢?红黑树进行put()/get()/remove()操作的时间复杂度为0(logn)，比单向链表的时间复杂度0(n)的好,性能更高
+- 什么时候红黑树会变为单向链表:
+    - 当使用红黑树的索引i位置上的元素的个数低于6的时候，就会将红黑树结构退化为单向链表
+    - 为什么修改呢?因为红黑树占用的空间几乎是单向链表的两倍
+
+##### 属性/字段：
+
+```java
+static final int DEFAULT_INITIAL_CAPACITY = 1 << 4;  //默认的初始容量 16
+static final int MAXIMUM_CAPACITY = 1 << 30;//最大容量 1<<30 
+static final float DEFAULT_LOAD_FACTOR = 0.75f; //默认加载因子
+static final int TREEIFY_THRESHOLD = 8;//默认树化阈值8，当链表的长度达到这个值后，要考虑树化
+static final int UNTREEIFY_THRESHOLD = 6;//默认反树化阈值6，当树中结点的个数达到此阈值后，要考虑变为链表
+//当单个的链表的结点个数达到8，并且table的长度达到64，才会树化
+//当单个的链表的结点个数达到8，但是table的长度未达到64，会先扩容
+static final int MIN_TREEIFY_CAPACITY = 64;  //最小树化容量64
+
+transient Node<K, V>[] table; //数组
+transient int size; //记录有效映射关系的对数，也是Entry对象的个数
+int threshold;  //阈值，当size达到阈值时，考虑扩容
+final float loadFactor;//加载因子，影响扩容的频率
+ ```
+
+#### 2.1.3 LinkedHashMap
+
+##### LinkedHashMap与HashMap 的关系:
+
+- LinkedHashMap是HashMap的子类
+- LinkedHashMap在HashMap使用的数组+单向链表+红黑树的基础上，又增加了一对双向链表，记录添加的(key,valve)
+  的先后顺序。便于我们遍历所有的key-valve。
+- inkedHashMap重写了HashMap的如下方法:
+
+```java
+Node<K, V> newNode (int hash , K key , V value , Node<K, V> e) {
+    LinkedHashMap.Entry<K.V> p = new LinkedHashMap.Entry<K, V>(hash , key , value , e);
+    LinkNodeLast(p);  //处理双向链表 before,after
+    return p;
+}
+ ```
+- 底层结构:LinkedHashMap内部定义了一个Entry
+```java
+static class Entry<K, V> extends HashMap.Node<K, V> {
+    Entry<K, V> before, after;  //增加的一对双向链表
+    Entry (int hash , K key , V value , Node<K, V> next) {
+        super(hash , key , value , next);
+    }
+}
+
  ```
