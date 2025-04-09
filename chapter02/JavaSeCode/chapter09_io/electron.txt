@@ -1,0 +1,80 @@
+Copyright (c) Electron contributors
+Copyright (c) 2013-2020 GitHub Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+### 3.缓冲流的使用：
+
+#### 3.1 作用：
+
+- 读写操作涉及和磁盘的交互，通过缓冲流可以将几次读写操作合并为一次，减少和磁盘的交互，提高传输效率
+- 缓冲流通过在内存中设置`缓冲区`，将多次的读写操作合并为一次或少数几次与底层设备的交互，减少了系统调用的次数，从而显著提高了
+  I/O 操作的效率
+
+#### 3.2 使用的方法
+
+##### 处理非文本文件的字节流:BufferedInputStream\Buffered0utputStream
+
+- read(byte[] buffer)
+- write(byte[] buffer,0,len)/flush()
+
+##### 处理文本文件的字符流:BufferedReader\BufferedWriter
+
+- read(char[] cBuffer)/String readLine()
+- write(char[], cBuffer,0,len)/write(String )/flush()
+    - flush()(刷新的方法。每当调用此方法时，就会主动的将内存中的数据写出到磁盘文件中)
+    - close()(资源关闭时，会自动刷新)
+
+### 4.转换流的使用：
+
+#### 4.1
+
+- 字符编码:字符、字符串、字符数组---> 字节、字节数组(从我们能看得懂的--->我们看不懂的)
+- 字符解码:字节、字节数组 ---> 字符、字符串、字符数组(从我们看不懂的--->我们能看得懂的)
+
+#### 4.2 如果希望程序在读取文本文件时，不出现乱码，需要注意什么?
+
+- 解码时使用的字符集必须与当初编码时使用的字符集得相同。
+- 拓展:解码集必须要与编码集兼容。比如、文件编码使用的是GBK，解码时使用的是utf-8。如果文件中只有abc等英文字符
+- 也不会出现乱码，因为GBK和utf-8都向下兼容了ASCII(或ascii)
+
+#### 4.3 转换流:
+
+- ① 作用:实现字节与字符之间的转换
+- ② API:
+- InputStreamReader:将一个输入型的字节流转换为输入型的字符流
+- 0utputstreamWriter:将一个输出型的字符流转换为输出型的字节流
+- ③应用：将GBK存储的文件变为UTF-8存储
+
+#### 4.4 字符集
+
+##### 4.4.1 在存储的文件中的字符
+
+- ascii:主要用来存储a、b、c等英文字符和1、2、3、常用的标点符号。每个字符占用1个字节。
+- iso-8859-1:了解，每个字符占用1个字节。向下兼容ascii。
+- gbk:用来存储中文简体繁体、a、b、c等英文字符和1、2、3、常用的标点符号等字符。
+    - 中文字符使用2个字节存储的。向下兼容ascii，意味着英文字符、1、2、3、标点符号仍使用1个字节。
+- utf-8:可以用来存储世界范围内主要的语言的所有的字符。使用1-4个不等的字节表示一个字符。
+    - 中文字符使用3个字节存储的。向下兼容ascii，意味着英文字符、1、2、3、标点符号仍使用1个字节。
+
+##### 4.1.2 在内存中的字符
+
+- 一个字符(char)占用2个字节。在内存中使用的字符集称为Unicode字符集
