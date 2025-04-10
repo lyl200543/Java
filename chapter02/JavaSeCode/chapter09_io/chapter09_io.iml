@@ -7,6 +7,21 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="JunitTest" level="project" />
+    <orderEntry type="library" exported="" name="JunitTest" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library name="commons-io-2.5">
+        <CLASSES>
+          <root url="file://D:/资源/Java/JavaSE/第2部分：Java高级编程/尚硅谷_宋红康_第13章_IO流/apache-common包/commons-io-2.5" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="file://D:/资源/Java/JavaSE/第2部分：Java高级编程/尚硅谷_宋红康_第13章_IO流/apache-common包/commons-io-2.5/docs" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="file://D:/资源/Java/JavaSE/第2部分：Java高级编程/尚硅谷_宋红康_第13章_IO流/apache-common包/commons-io-2.5-src/src/main/java" />
+          <root url="file://D:/资源/Java/JavaSE/第2部分：Java高级编程/尚硅谷_宋红康_第13章_IO流/apache-common包/commons-io-2.5-src/src/test/java" />
+        </SOURCES>
+        <jarDirectory url="file://D:/资源/Java/JavaSE/第2部分：Java高级编程/尚硅谷_宋红康_第13章_IO流/apache-common包/commons-io-2.5" recursive="false" />
+      </library>
+    </orderEntry>
   </component>
 </module>
