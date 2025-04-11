@@ -13,6 +13,7 @@
       <module fileurl="file://$PROJECT_DIR$/chapter08_dataStructure/chapter08_dataStructure.iml" filepath="$PROJECT_DIR$/chapter08_dataStructure/chapter08_dataStructure.iml" />
       <module fileurl="file://$PROJECT_DIR$/chapter09_io/chapter09_io.iml" filepath="$PROJECT_DIR$/chapter09_io/chapter09_io.iml" />
       <module fileurl="file://$PROJECT_DIR$/chapter10_net/chapter10_net.iml" filepath="$PROJECT_DIR$/chapter10_net/chapter10_net.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chapter11_reflection/chapter11_reflection.iml" filepath="$PROJECT_DIR$/chapter11_reflection/chapter11_reflection.iml" />
     </modules>
   </component>
 </project>

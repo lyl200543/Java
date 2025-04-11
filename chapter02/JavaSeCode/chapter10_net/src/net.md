@@ -96,5 +96,11 @@
 
 
 ---
-## 3.
+## 3.URL编程：
+### URL(Uniform Resource Locator):统一资源定位符（种子）
+#### 3.1作用:
+- 一个具体的url就对应着互联网上某一资源的地址
+#### 3.2 URL的格式:
+- http://192.168.21.107:8080/examples/abcd.jpg?name=Tom 
+- 应用层协议   ip地址      端口号   资源地址         参数列表
 

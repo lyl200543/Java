@@ -12,6 +12,7 @@ import java.net.Socket;
  * Package: TCPTest
  * Description:创建于 2025/4/10 21:37
  * 例题2:客户端发送文件给服务端，服务端将文件保存在本地。并返回发送成功给客户端。并关闭相应的连接
+ *
  * @Author lyl
  * @Version 1.0
  */
@@ -31,7 +32,21 @@ public class TCPTest3 {
             os.write(arr , 0 , len);
         }
         System.out.println("数据传输完毕");
+        //表示客户端不再传输数据，服务端不用等待客户端
+        socket.shutdownOutput();
 
+        //接受服务端的信息
+        InputStream is = socket.getInputStream();
+        byte[] arr1 = new byte[5];
+        int len1;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        while ((len1 = is.read(arr1)) != - 1) {
+            baos.write(arr1 , 0 , len1);
+        }
+        System.out.println(baos);
+
+        baos.close();
+        is.close();
         os.close();
         fis.close();
         socket.close();
@@ -53,6 +68,11 @@ public class TCPTest3 {
         }
         System.out.println("数据接收完毕");
 
+        //向客户端发送信息
+        OutputStream os = socket.getOutputStream();
+        os.write("发送成功".getBytes());
+
+        os.close();
         fos.close();
         is.close();
         socket.close();
